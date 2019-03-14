@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="类与实例 对象是一个自包含的实体，用一组可识别的特性和行为来标识 面向对象编程——Object-Oriented Programming 类就是具有相同的属性和功能的对象的抽象的集合 “实例”就是一个真实的对象。实例化就是创建对象的过程">
+<meta name="keywords" content="面向对象,设计模式基础,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象编程基础">
+<meta property="og:url" content="https://www.qdzzyb.cn/2015/11/15/2015-11-15-面向对象编程基础/index.html">
+<meta property="og:site_name" content="QDZZYB">
+<meta property="og:description" content="类与实例 对象是一个自包含的实体，用一组可识别的特性和行为来标识 面向对象编程——Object-Oriented Programming 类就是具有相同的属性和功能的对象的抽象的集合 “实例”就是一个真实的对象。实例化就是创建对象的过程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T07:28:23.659Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象编程基础">
+<meta name="twitter:description" content="类与实例 对象是一个自包含的实体，用一组可识别的特性和行为来标识 面向对象编程——Object-Oriented Programming 类就是具有相同的属性和功能的对象的抽象的集合 “实例”就是一个真实的对象。实例化就是创建对象的过程">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.qdzzyb.cn/2015/11/15/2015-11-15-面向对象编程基础/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>面向对象编程基础 | QDZZYB</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QDZZYB</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.qdzzyb.cn/2015/11/15/2015-11-15-面向对象编程基础/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qdzzyb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QDZZYB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面向对象编程基础
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-11-15 19:42:00" itemprop="dateCreated datePublished" datetime="2015-11-15T19:42:00+08:00">2015-11-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-14 15:28:23" itemprop="dateModified" datetime="2019-03-14T15:28:23+08:00">2019-03-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="类与实例"><a href="#类与实例" class="headerlink" title="类与实例"></a>类与实例</h2><ol>
+<li><strong>对象是一个自包含的实体，用一组可识别的特性和行为来标识</strong></li>
+<li>面向对象编程——Object-Oriented Programming</li>
+<li>类就是具有相同的属性和功能的对象的抽象的集合</li>
+<li>“实例”就是一个真实的对象。实例化就是创建对象的过程</li>
+</ol>
+<a id="more"></a>
+<h2 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h2><ul>
+<li>重载（overloading）在静态类型语言（C++、JAVA、C#）中存在，大话设计模式中实例代码用到的是C#。</li>
+<li><p>Python是动态语言，之前看到Python不支持重载，我认为Python可以通过对参数预设默认值然后通过if语句判断使程序分支从而实现重载</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function overloading</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(arg1, arg2, arg3 = None)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> arg3 == <span class="keyword">None</span>:</span><br><span class="line">         just use arg1 <span class="keyword">and</span> arg2</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">         use all arg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数重载主要为了解决两个问题：可变参数类型 可变参数个数</p>
+<ul>
+<li>因为Python可以接受任何类型的参数，如果函数功能相同，不同类型可能对应着相同的代码所以没有必要设置两个函数</li>
+<li>函数功能相同但是参数个数不同，处理方式就是参数缺省</li>
+</ul>
+</li>
+<li>介于以上所以Python并不需要函数重载</li>
+</ul>
+<h2 id="属性与修饰符"><a href="#属性与修饰符" class="headerlink" title="属性与修饰符"></a>属性与修饰符</h2><p>传统面向对象编程语言都有public、private、protected三个修饰符。在Python中变量名前加“__”(双下划线)来实现private修饰符。<br>虽然私有但并不是不能访问。<br>访问方式如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    __a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> A._A__a</span><br></pre></td></tr></table></figure></p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><ul>
+<li>每个对象都包含它能进行操作所需要的所有信息，这个特性称为封装</li>
+<li>封装的好处：<ul>
+<li>良好的封装能减少耦合</li>
+<li>类内部的实现可以自由地修改</li>
+<li>类具有清晰的对外接口</li>
+</ul>
+</li>
+</ul>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面向对象/" rel="tag"># 面向对象</a>
+          
+            <a href="/tags/设计模式基础/" rel="tag"># 设计模式基础</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/14/2015-11-14-sublime-text-3-plugin-imsupport/" rel="next" title="Sublime Text 3 Plugin IMESupport">
+                <i class="fa fa-chevron-left"></i> Sublime Text 3 Plugin IMESupport
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/23/2015-11-23-Socket-Address-Structures/" rel="prev" title="Socket Address Structures">
+                Socket Address Structures <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">qdzzyb</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/qdzzyb2014" title="GitHub &rarr; https://github.com/qdzzyb2014" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:qdzzyb2015@gmail.com" title="E-Mail &rarr; mailto:qdzzyb2015@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类与实例"><span class="nav-number">1.</span> <span class="nav-text">类与实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法重载"><span class="nav-number">2.</span> <span class="nav-text">方法重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性与修饰符"><span class="nav-number">3.</span> <span class="nav-text">属性与修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">4.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">5.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">6.</span> <span class="nav-text">多态</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qdzzyb</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

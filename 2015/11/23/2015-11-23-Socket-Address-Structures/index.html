@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="IPv4 Socket Address StructureIPv4套接字地址结构一般被称为网络套接字地址结构(Internet socket address structure) 123456789101112#include&amp;lt;netinet/in.h&amp;gt;struct in_addr &amp;#123;    in_addr_t s_addr; /*32-bits IPv4 address*/">
+<meta name="keywords" content="UNIX Network Programming,Socket-Address-Structures">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Socket Address Structures">
+<meta property="og:url" content="https://www.qdzzyb.cn/2015/11/23/2015-11-23-Socket-Address-Structures/index.html">
+<meta property="og:site_name" content="QDZZYB">
+<meta property="og:description" content="IPv4 Socket Address StructureIPv4套接字地址结构一般被称为网络套接字地址结构(Internet socket address structure) 123456789101112#include&amp;lt;netinet/in.h&amp;gt;struct in_addr &amp;#123;    in_addr_t s_addr; /*32-bits IPv4 address*/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xkpiw.com1.z0.glb.clouddn.com/datatypes%20required%20by%20the%20POSIX%20specification.gif">
+<meta property="og:updated_time" content="2019-03-14T07:28:19.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Socket Address Structures">
+<meta name="twitter:description" content="IPv4 Socket Address StructureIPv4套接字地址结构一般被称为网络套接字地址结构(Internet socket address structure) 123456789101112#include&amp;lt;netinet/in.h&amp;gt;struct in_addr &amp;#123;    in_addr_t s_addr; /*32-bits IPv4 address*/">
+<meta name="twitter:image" content="http://7xkpiw.com1.z0.glb.clouddn.com/datatypes%20required%20by%20the%20POSIX%20specification.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.qdzzyb.cn/2015/11/23/2015-11-23-Socket-Address-Structures/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Socket Address Structures | QDZZYB</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QDZZYB</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.qdzzyb.cn/2015/11/23/2015-11-23-Socket-Address-Structures/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qdzzyb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QDZZYB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Socket Address Structures
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-11-23 15:34:00" itemprop="dateCreated datePublished" datetime="2015-11-23T15:34:00+08:00">2015-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-14 15:28:19" itemprop="dateModified" datetime="2019-03-14T15:28:19+08:00">2019-03-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX-Network-Programming/" itemprop="url" rel="index"><span itemprop="name">UNIX Network Programming</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="IPv4-Socket-Address-Structure"><a href="#IPv4-Socket-Address-Structure" class="headerlink" title="IPv4 Socket Address Structure"></a>IPv4 Socket Address Structure</h1><p>IPv4套接字地址结构一般被称为网络套接字地址结构(<strong>Internet socket address structure</strong>)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> &#123;</span></span><br><span class="line">    <span class="keyword">in_addr_t</span> s_addr; <span class="comment">/*32-bits IPv4 address*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> &#123;</span></span><br><span class="line">    <span class="keyword">uint8_t</span>     sin_len;     <span class="comment">/* length of structure(16) */</span></span><br><span class="line">    <span class="keyword">sa_family_t</span> sin_family;  <span class="comment">/* AF_INET */</span></span><br><span class="line">    <span class="keyword">in_port_t</span>   sin_port;    <span class="comment">/* 16-bit TCP or UDP port number */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span> <span class="comment">/* 32-bit IPv4 address */</span></span><br><span class="line">    <span class="keyword">char</span>        sin_zero[<span class="number">8</span>]; <span class="comment">/* unused */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>再用上面的结构的时候有几点需要注意：</p>
+<ul>
+<li><strong>sin_len</strong> 是为了支持OSI protocols才增加的，以前第一项是 <strong>sin_family</strong></li>
+<li>虽然提供了长度项，但是并不需要对它赋值或者测试。<strong>bind connect sendto sendmsg</strong>这四个函数把套接字地址结构从进程传送给内核时会显式的设置sin_len。也就是这四个函数的其中一个参数。</li>
+<li>各个参数的长度 如图</li>
+</ul>
+<p><img src="http://7xkpiw.com1.z0.glb.clouddn.com/datatypes%20required%20by%20the%20POSIX%20specification.gif" alt="datatypes required by the POSIX specification"></p>
+<ul>
+<li>可以发现将<strong>sin_addr</strong>定义成一个结构明显多余。这类情况一般都是历史原因造成的。</li>
+<li><strong>sin_zero</strong>凑字节用的。。。。通常在填写整个结构之前都先写上0</li>
+</ul>
+<h1 id="Generic-Socket-Address-Structure"><a href="#Generic-Socket-Address-Structure" class="headerlink" title="Generic Socket Address Structure"></a>Generic Socket Address Structure</h1><p>一个套接字地址结构总是通过引用的形式被当作参数传递给socket function。但是socket functions 要处理接收到的作为参数的指针可能来自任何一个它所支持的协议家族。那么问题来了：<strong>如何声明传递来的指针呢？</strong> 可以用空指针，然而ANSI C来的太晚了。所以用到标题提到的Generic Socket Address Structure 套接字地址结构泛型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span> &#123;</span></span><br><span class="line">    <span class="keyword">uint8_t</span>         sa_len;</span><br><span class="line">    <span class="keyword">sa_family_t</span>     sa_family; <span class="comment">/*address family: AF_XXX value8*/</span></span><br><span class="line">    <span class="keyword">char</span>            sa_data[<span class="number">14</span>]; <span class="comment">/* protocol-specific address*/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>用上这个泛型以后来看一下bind函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int bind(int, struct sockaddr *, socklen_t);</span><br></pre></td></tr></table></figure>
+<p>当你用具体类型的soket address structures 是用  强制类型转换(cast the pointer)就可以了 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv</span>;</span></span><br><span class="line">bind(sockfd, (SA *) &amp;serv, <span class="keyword">sizeof</span>(serv)); </span><br><span class="line"><span class="comment">/* 在CSAPP 和 UNIX Network Programming 中 SA 是 struct sockaddr 的缩写 */</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UNIX-Network-Programming/" rel="tag"># UNIX Network Programming</a>
+          
+            <a href="/tags/Socket-Address-Structures/" rel="tag"># Socket-Address-Structures</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/15/2015-11-15-面向对象编程基础/" rel="next" title="面向对象编程基础">
+                <i class="fa fa-chevron-left"></i> 面向对象编程基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/28/2015-11-28-linux-目录与文件的权限意义/" rel="prev" title="linux 目录与文件的权限意义">
+                linux 目录与文件的权限意义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">qdzzyb</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/qdzzyb2014" title="GitHub &rarr; https://github.com/qdzzyb2014" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:qdzzyb2015@gmail.com" title="E-Mail &rarr; mailto:qdzzyb2015@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4-Socket-Address-Structure"><span class="nav-number">1.</span> <span class="nav-text">IPv4 Socket Address Structure</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generic-Socket-Address-Structure"><span class="nav-number">2.</span> <span class="nav-text">Generic Socket Address Structure</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qdzzyb</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
