@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.qdzzyb.cn/tags/index.html</loc>
+    
+    <lastmod>2019-03-26T15:17:26.850Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.qdzzyb.cn/2019/03/26/Nginx%E4%B8%ADuwsgi-pass%E5%92%8Cproxy-pass%E7%9A%84%E4%B8%8D%E5%90%8C/</loc>
     
     <lastmod>2019-03-26T15:08:55.278Z</lastmod>
