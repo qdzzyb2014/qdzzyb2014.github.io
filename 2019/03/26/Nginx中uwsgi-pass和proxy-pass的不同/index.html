@@ -96,20 +96,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="QDZZYB">
-<meta property="og:url" content="https://blog.qdzzyb.cn/tags/list/index.html">
+  <meta name="description" content="起因之前做过的一个项目最近在容器化，DevOps的伙伴写好了Dockerfile和docker-compose.yml之后，Nginx作为反向代理，并不能将请求转发到uwsgi服务。于是我clone下来他的部署脚本在本地跑了一下试了试，发现了问题的所在。 先说结论：    Nginx转发时使用的协议是 uwsgi (指协议的时候是小写)    uwsgi接收时使用的协议是 http">
+<meta name="keywords" content="Nginx,uwsgi_pass,proxy_pass">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx中uwsgi_pass和proxy_pass的不同">
+<meta property="og:url" content="https://blog.qdzzyb.cn/2019/03/26/Nginx中uwsgi-pass和proxy-pass的不同/index.html">
 <meta property="og:site_name" content="QDZZYB">
+<meta property="og:description" content="起因之前做过的一个项目最近在容器化，DevOps的伙伴写好了Dockerfile和docker-compose.yml之后，Nginx作为反向代理，并不能将请求转发到uwsgi服务。于是我clone下来他的部署脚本在本地跑了一下试了试，发现了问题的所在。 先说结论：    Nginx转发时使用的协议是 uwsgi (指协议的时候是小写)    uwsgi接收时使用的协议是 http">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-26T15:08:55.278Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="QDZZYB">
+<meta name="twitter:title" content="Nginx中uwsgi_pass和proxy_pass的不同">
+<meta name="twitter:description" content="起因之前做过的一个项目最近在容器化，DevOps的伙伴写好了Dockerfile和docker-compose.yml之后，Nginx作为反向代理，并不能将请求转发到uwsgi服务。于是我clone下来他的部署脚本在本地跑了一下试了试，发现了问题的所在。 先说结论：    Nginx转发时使用的协议是 uwsgi (指协议的时候是小写)    uwsgi接收时使用的协议是 http">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.qdzzyb.cn/tags/list/">
+  <link rel="canonical" href="https://blog.qdzzyb.cn/2019/03/26/Nginx中uwsgi-pass和proxy-pass的不同/">
 
 
 
@@ -119,7 +124,7 @@
   };
 </script>
 
-  <title>Tag: list | QDZZYB</title>
+  <title>Nginx中uwsgi_pass和proxy_pass的不同 | QDZZYB</title>
   
 
 
@@ -167,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -264,73 +269,198 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>list<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.qdzzyb.cn/2019/03/26/Nginx中uwsgi-pass和proxy-pass的不同/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qdzzyb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QDZZYB">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2015/12/14/2015-12-14-Python函数传递/" itemprop="url">
-            
-              <span itemprop="name">Python 函数传递</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Nginx中uwsgi_pass和proxy_pass的不同
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-12-14T23:50:00+08:00" content="2015-12-14">
-          12-14
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-26 22:13:58 / Modified: 23:08:55" itemprop="dateCreated datePublished" datetime="2019-03-26T22:13:58+08:00">2019-03-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>之前做过的一个项目最近在容器化，DevOps的伙伴写好了Dockerfile和docker-compose.yml之后，Nginx作为反向代理，并不能将请求转发到uwsgi服务。于是我clone下来他的部署脚本在本地跑了一下试了试，发现了问题的所在。</p>
+<p>先说结论：<br>    Nginx转发时使用的协议是 <strong>uwsgi</strong> (指协议的时候是小写)<br>    uwsgi接收时使用的协议是 <strong>http</strong></p>
+<a id="more"></a>
+<p>对应的配置详情</p>
+<pre><code>Ngxin配置中转发的配置
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">upstream server &#123;</span><br><span class="line">    server api:8090;</span><br><span class="line">&#125;</span><br><span class="line">location / &#123;</span><br><span class="line"></span><br><span class="line">    ***</span><br><span class="line"></span><br><span class="line">    include uwsgi_params;</span><br><span class="line">    proxy_pass server;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+uWSGI启动命令
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --wsgi autoapp --http-socket 0.0.0.0:8090 --buffer-size 8192 --lazy-apps --cheaper 2 --processes 12 --master --lazy --check-interval 1</span><br></pre></td></tr></table></figure>
+</code></pre><p>按照上面的配置启动，会导致下面的问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[error] 18#18: *6 upstream prematurely closed connection while reading response header from upstream, client: 172.20.0.1, server: 127.0.0.1, request: &quot;GET /admin/login HTTP/1.1&quot;, upstream: &quot;http://172.20.0.3:8090/admin/login&quot;, host: &quot;127.0.0.1:8080&quot;</span><br></pre></td></tr></table></figure></p>
+<p>所以想要成功转发</p>
+<ul>
+<li>Nginx中使用<strong>uwsgi_pass</strong>, 启动uwsgi要用<strong>uwsgi -s</strong></li>
+<li>Nginx中使用<strong>proxy_pass</strong>, 启动uwsgi要用<strong>uwsgi –http-socket</strong></li>
+</ul>
+<h1 id="那么问题来了"><a href="#那么问题来了" class="headerlink" title="那么问题来了"></a>那么问题来了</h1><p>除了转发协议不同以外，还有什么不同呢？如果用了uwsgi协议，那么你就可以发送你想要的数据类型给uWSGI Server，同时调用一下uWSGI的插架来生成响应。</p>
+<h1 id="最后插一句"><a href="#最后插一句" class="headerlink" title="最后插一句"></a>最后插一句</h1><p>既然用了uWSGI Server转发过程使用uwsgi协议应该也是顺理成章的。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://uwsgi-docs.readthedocs.io/en/latest/Protocol.html" target="_blank" rel="noopener">https://uwsgi-docs.readthedocs.io/en/latest/Protocol.html</a><br><a href="https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/ThirdPartyPlugins.html" target="_blank" rel="noopener">uWSGI插件</a></p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/uwsgi-pass/" rel="tag"># uwsgi_pass</a>
+          
+            <a href="/tags/proxy-pass/" rel="tag"># proxy_pass</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/20/B-Trees数据结构/" rel="next" title="B-Trees数据结构">
+                <i class="fa fa-chevron-left"></i> B-Trees数据结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -351,8 +481,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -523,6 +662,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那么问题来了"><span class="nav-number">2.</span> <span class="nav-text">那么问题来了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后插一句"><span class="nav-number">3.</span> <span class="nav-text">最后插一句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -651,6 +807,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -660,6 +820,8 @@
 
 
   
+  
+
 
 
 
