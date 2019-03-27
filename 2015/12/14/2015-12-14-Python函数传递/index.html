@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="Python的函数传递 参数传递实际上传递的是对象的引用(reference) 有的参数类型是可变的(mutable)，有些不能 如果给函数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象  12345678910def try_to_change_list_contents(the_lis">
+  <meta name="description" content="Python的参数传递 参数传递实际上传递的是对象的引用(reference) 有的参数类型是可变的(mutable)，有些不能 如果给参数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象  12345678910def try_to_change_list_contents(the_lis">
 <meta name="keywords" content="Python,list,tuple,参数传递">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 函数传递">
+<meta property="og:title" content="Python 参数传递">
 <meta property="og:url" content="https://blog.qdzzyb.cn/2015/12/14/2015-12-14-Python函数传递/index.html">
 <meta property="og:site_name" content="QDZZYB">
-<meta property="og:description" content="Python的函数传递 参数传递实际上传递的是对象的引用(reference) 有的参数类型是可变的(mutable)，有些不能 如果给函数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象  12345678910def try_to_change_list_contents(the_lis">
+<meta property="og:description" content="Python的参数传递 参数传递实际上传递的是对象的引用(reference) 有的参数类型是可变的(mutable)，有些不能 如果给参数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象  12345678910def try_to_change_list_contents(the_lis">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-14T07:28:07.093Z">
+<meta property="og:updated_time" content="2019-03-26T15:33:14.399Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 函数传递">
-<meta name="twitter:description" content="Python的函数传递 参数传递实际上传递的是对象的引用(reference) 有的参数类型是可变的(mutable)，有些不能 如果给函数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象  12345678910def try_to_change_list_contents(the_lis">
+<meta name="twitter:title" content="Python 参数传递">
+<meta name="twitter:description" content="Python的参数传递 参数传递实际上传递的是对象的引用(reference) 有的参数类型是可变的(mutable)，有些不能 如果给参数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象  12345678910def try_to_change_list_contents(the_lis">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>Python 函数传递 | QDZZYB</title>
+  <title>Python 参数传递 | QDZZYB</title>
   
 
 
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python 函数传递
+          <h1 class="post-title" itemprop="name headline">Python 参数传递
 
               
             
@@ -366,7 +366,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-14 15:28:07" itemprop="dateModified" datetime="2019-03-14T15:28:07+08:00">2019-03-14</time>
+                <time title="Modified: 2019-03-26 23:33:14" itemprop="dateModified" datetime="2019-03-26T23:33:14+08:00">2019-03-26</time>
               
             
           </span>
@@ -417,10 +417,10 @@
       
 
       
-        <h1 id="Python的函数传递"><a href="#Python的函数传递" class="headerlink" title="Python的函数传递"></a>Python的函数传递</h1><ol>
+        <h1 id="Python的参数传递"><a href="#Python的参数传递" class="headerlink" title="Python的参数传递"></a>Python的参数传递</h1><ol>
 <li>参数传递实际上传递的是对象的引用(reference)</li>
 <li>有的参数类型是可变的(mutable)，有些不能</li>
-<li><p>如果给函数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象</p>
+<li><p>如果给参数传递的是可变对象，函数得到的一份相同对象的引用，同时你也可以修改他。这是你将这个引用重新绑定，这个函数外面的区域是不知道的，外面的引用此时还是指向原来的对象</p>
  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">try_to_change_list_contents</span><span class="params">(the_list)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'got'</span>, the_list</span><br><span class="line">    the_list.append(<span class="string">'four'</span>)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'changed to'</span>, the_list</span><br><span class="line"></span><br><span class="line">outer_list = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'before, outer_list = '</span>, outer_list</span><br><span class="line">try_to_change_list_contents(outer_list)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'after, outer_list = '</span>, outer_list</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Output:</p>
@@ -731,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python的函数传递"><span class="nav-number">1.</span> <span class="nav-text">Python的函数传递</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python的参数传递"><span class="nav-number">1.</span> <span class="nav-text">Python的参数传递</span></a></li></ol></div>
             
 
           </div>
