@@ -29,7 +29,6 @@ class BTreeNode:
     '''
     def add(self, elem):
         self._loose_add(elem)
-        # [[3, 10, 18], [2], [5], [16], [20]]
         if self.elements_count > self.MAXINUM:
             new_root = BTreeNode([], [self])
             new_root._fix_excess(0)
@@ -40,7 +39,78 @@ class BTreeNode:
     remove a specified element from this set
     '''
     def remove(self, elem):
-        pass
+        self._loose_remove(elem)
+        if self.sub_nodes == 1 and self.elements_count == 0:
+            return self.sub_nodes[0]
+        return self
+
+    def _loose_remove(self, target):
+        index = self._first_GE(target)
+        if (self.sub_nodes_count == 0 and
+                index < self.elements_count and
+                self.elements[index] != target):
+            return
+        elif (self.sub_nodes_count == 0 and
+                index < self.elements_count and
+                self.elements[index] == target):
+            self.elements.pop(index)
+            return
+        elif (self.sub_nodes_count > 0 and
+                index < self.elements_count and
+                self.elements[index] != target) or index == self.elements_count:
+            self.sub_nodes[index]._loose_remove(target)
+            if self.sub_nodes[index].elements_count < self.MININUM:
+                self.fix_shortage(index)
+        elif (self.sub_nodes_count > 0 and
+                index < self.elements_count and
+                self.elements[index] == target):
+            self.elements[index] = self.sub_nodes[index].remove_largest()
+            if self.sub_nodes[index].elements_count < self.MININUM:
+                self.fix_shortage(index)
+
+    def remove_largest(self):
+        if self.sub_nodes_count <= 0:
+            return self.elements.pop(-1)
+        res = self.sub_nodes[-1].remove_largest()
+        if self.sub_nodes[-1].elements_count < self.MININUM:
+            self.fix_shortage(self.sub_nodes_count - 1)
+        return res
+
+    def fix_shortage(self, child_index):
+
+        if 0 <= child_index < self.sub_nodes_count - 1 and self.sub_nodes[child_index + 1].elements_count > self.MININUM:
+            self.sub_nodes[child_index].elements.append(self.elements[child_index])
+            if self.sub_nodes[child_index + 1].sub_nodes:
+                self.sub_nodes[child_index].sub_nodes.append(
+                    self.sub_nodes[child_index + 1].sub_nodes.pop(0)
+                )
+            self.elements[child_index] = self.sub_nodes[child_index + 1].elements.pop(0)
+
+        elif child_index > 0 and self.sub_nodes[child_index - 1].elements_count > self.MININUM:
+            self.sub_nodes[child_index].elements.append(self.elements[child_index - 1])
+            if self.sub_nodes[child_index].sub_nodes:
+                self.sub_nodes[child_index].sub_nodes.append(
+                    self.sub_nodes[child_index - 1].sub_nodes.pop(-1)
+                )
+            self.elements[child_index - 1] = self.sub_nodes[child_index - 1].elements.pop(-1)
+
+        elif child_index > 0 and self.sub_nodes[child_index - 1].elements_count == self.MININUM:
+            child = self.sub_nodes[child_index]
+            new_child = BTreeNode(
+                self.sub_nodes[child_index - 1].elements[:] + [self.elements.pop(child_index - 1)],
+                self.sub_nodes[child_index - 1].sub_nodes[:] + child.sub_nodes[:]
+            )
+            self.sub_nodes[child_index - 1] = new_child
+            self.sub_nodes.pop(child_index)
+
+        elif 0 <= child_index < self.sub_nodes_count and self.sub_nodes[child_index + 1].elements_count == self.MININUM:
+            child = self.sub_nodes[child_index]
+            new_child = BTreeNode(
+                [self.elements.pop(child_index)] + self.sub_nodes[child_index + 1].elements[:],
+                child.sub_nodes[:] + self.sub_nodes[child_index + 1].sub_nodes[:]
+            )
+            self.sub_nodes[child_index] = new_child
+            self.sub_nodes.pop(child_index + 1)
 
     '''
     determine whether a particular element is in this set
@@ -72,7 +142,6 @@ class BTreeNode:
 
     def _loose_add(self, target):
         index = self._first_GE(target)
-        print((target, index, self.elements, self.sub_nodes_count))
         if index < self.elements_count and self.elements[index] == target:
             return
         elif self.sub_nodes_count == 0:
@@ -98,7 +167,6 @@ class BTreeNode:
         self.sub_nodes.insert(index, left)
 
         self._insert_element(excess_node.elements[mid])
-        print("end fixExcess: {}".format(self.elements))
 
 
 # Serarch
@@ -142,5 +210,15 @@ if __name__ == '__main__':
     for i in [2, 3, 5,10,16,18,20,25,4,12,19,22,6,17][::-1]:
         root = root.add(i)
         rv = level_traverse(root)
-        print_tree(root)
-        print()
+    print(level_traverse(root))
+
+    # root = root.remove(22)
+    # print(level_traverse(root))
+    root = root.remove(12)
+    root = root.remove(6)
+    root = root.remove(19)
+    root = root.remove(5)
+    root = root.remove(18)
+    root = root.remove(17)
+
+    print(level_traverse(root))
