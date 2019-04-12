@@ -96,20 +96,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="QDZZYB">
-<meta property="og:url" content="https://blog.qdzzyb.cn/tags/tuple/index.html">
+  <meta name="description" content="早上用户登录后台，正常的流程是跳转到微信——扫描微信二维码——手机端点击登录——带着参数跳转会后台。然而用户登录跳转回来的时，请求被nginx拦了下来报了403。我看了一眼nginx配置，发现了如下配置 12345678location / &amp;#123;    valid_referers none blocked server_names;        if ($invalid_referer">
+<meta name="keywords" content="Ningx,防盗链,referer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx利用referer简单的防盗链">
+<meta property="og:url" content="https://blog.qdzzyb.cn/2019/04/12/nginx利用referer简单的防盗链/index.html">
 <meta property="og:site_name" content="QDZZYB">
+<meta property="og:description" content="早上用户登录后台，正常的流程是跳转到微信——扫描微信二维码——手机端点击登录——带着参数跳转会后台。然而用户登录跳转回来的时，请求被nginx拦了下来报了403。我看了一眼nginx配置，发现了如下配置 12345678location / &amp;#123;    valid_referers none blocked server_names;        if ($invalid_referer">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-12T07:53:47.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="QDZZYB">
+<meta name="twitter:title" content="nginx利用referer简单的防盗链">
+<meta name="twitter:description" content="早上用户登录后台，正常的流程是跳转到微信——扫描微信二维码——手机端点击登录——带着参数跳转会后台。然而用户登录跳转回来的时，请求被nginx拦了下来报了403。我看了一眼nginx配置，发现了如下配置 12345678location / &amp;#123;    valid_referers none blocked server_names;        if ($invalid_referer">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.qdzzyb.cn/tags/tuple/">
+  <link rel="canonical" href="https://blog.qdzzyb.cn/2019/04/12/nginx利用referer简单的防盗链/">
 
 
 
@@ -119,7 +124,7 @@
   };
 </script>
 
-  <title>Tag: tuple | QDZZYB</title>
+  <title>nginx利用referer简单的防盗链 | QDZZYB</title>
   
 
 
@@ -185,7 +190,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -240,7 +245,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -299,76 +304,196 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>tuple<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.qdzzyb.cn/2019/04/12/nginx利用referer简单的防盗链/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qdzzyb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QDZZYB">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2015/12/14/2015-12-14-Python函数传递/" itemprop="url">
-            
-              <span itemprop="name">Python 参数传递</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">nginx利用referer简单的防盗链
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-12-14T23:50:00+08:00" content="2015-12-14">
-          12-14
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-12 14:44:28 / Modified: 15:53:47" itemprop="dateCreated datePublished" datetime="2019-04-12T14:44:28+08:00">2019-04-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>早上用户登录后台，正常的流程是跳转到微信——扫描微信二维码——手机端点击登录——带着参数跳转会后台。<br>然而用户登录跳转回来的时，请求被nginx拦了下来报了<code>403</code>。<br>我看了一眼nginx配置，发现了如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    valid_referers none blocked server_names;</span><br><span class="line">        if ($invalid_referer) &#123;</span><br><span class="line">            return 403;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    ***</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>这里是唯一产生403的位置，于是乎翻了翻<a href="http://nginx.org/en/docs/http/ngx_http_referer_module.html" target="_blank" rel="noopener">nginx的文档</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">valid_referers none | blocked | server_names | string ...;</span><br></pre></td></tr></table></figure>
+<p>简单说就是根据http headers中referer的值来设定<code>$invalid_referer</code>的值，<code>$invalid_referer</code>取值为 <code>&#39;1&#39;</code>或者 <code>空字符串</code><br>具体如何取值要看后面几个参数:</p>
+<pre><code>- none: 允许header中没有referer
+- blocked: 如果header中referer，referer可以不已 `http://` 或者 `https://` 开头
+- server_names: referer中包含某个主机名称
+- string: 与server_names一同作用，指定主机名字
+</code></pre><p>看完这些以后，回到文章最后403的问题，为什么会403呢查看日志我发现了问题</p>
+<p>我登录时跳转回来以后的请求日志:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[12/Apr/2019:11:07:14 +0800] &quot;GET /admin/login?code=N5XjJwTke1SwmyMyoVVIiWry0UqKfMXdS9JD5RTNtk0&amp;state=/admin/image_material/&amp;appid=wx82ef21a78c1162bf HTTP/1.1&quot; 302 257 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36&quot; &quot;-&quot;</span><br></pre></td></tr></table></figure></p>
+<p>这个用户的请求日志:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[12/Apr/2019:11:04:45 +0800] &quot;GET /admin/login?code=nYJzO2R00i_HCp_ryF4ZPTl7irp2EPOYlmKoXxGOmLI&amp;state=/admin/image_material/&amp;appid=wx82ef21a78c1162bf HTTP/1.1&quot; 403 571 &quot;https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=wx82ef21a78c1162bf&amp;agentid=1000002&amp;redirect_uri=https%3A%2F%2Fmlw.nttdata.com.cn%2Fadmin%2Flogin&amp;state=%2Fadmin%2Fimage_material%2F&quot; &quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36 LBBROWSER&quot; &quot;-</span><br></pre></td></tr></table></figure></p>
+<p>用户的请求多了referer，而我的却没有。由于<code>valid_referers</code>指定了<code>server_names</code>但是没有提供匹配的主机名称，所以用户的请求被拦截了下来<br>将配置改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    valid_referers none blocked server_names</span><br><span class="line">        *.qq.com;</span><br><span class="line">        if ($invalid_referer) &#123;</span><br><span class="line">            return 403;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    ***</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用户登录的问题解决了。至于为什么用户会带着，而我的没有，只能等我有一台windows的电脑再来探究了。</p>
+<p>再回来接着说<code>referer</code>，也就只能简单的防盗链了，自己写爬虫的时候不知道伪造了多少次，不管服务器是不是验证，我自己都会先把它加上。</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ningx/" rel="tag"># Ningx</a>
+          
+            <a href="/tags/防盗链/" rel="tag"># 防盗链</a>
+          
+            <a href="/tags/referer/" rel="tag"># referer</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/26/Nginx中uwsgi-pass和proxy-pass的不同/" rel="next" title="Nginx中uwsgi_pass和proxy_pass的不同">
+                <i class="fa fa-chevron-left"></i> Nginx中uwsgi_pass和proxy_pass的不同
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -691,6 +816,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -700,6 +829,8 @@
 
 
   
+  
+
 
 
 
